@@ -5,30 +5,30 @@
     <link rel="stylesheet" href="./styles/style.css">
   </head>
   <body>
-    <audio>
-      <source src="./audio_files/imtheone.mp4" type="audio/mp4">
-      <source src="./audio_files/closer.mp4" type="audio/mp4">
-      <source src="./audio_files/Despacito.mp4" type="audio/mp4">
+    <h1>Now Playing:</h1>
+    <h2 id="title">I'm The One - DJ Khalid</h2>
+    <audio id="myAudio" controls>
+      <source id="source-song" src="./audio_files/imtheone.mp4" type="audio/mp4">
     </audio>
     <div class="song-list">
-      <div class="song">
+      <div class="container">
         <button class="song1" type="button" name="button">load</button>
         I'm The One - DJ Khalid
       </div>
-      <div class="song">
+      <div class="container">
         <button class="song2" type="button" name="button">load</button>
         Despacito - Luis Fonsi & Daddy Yankee ft. Justin Bieber
       </div>
-      <div class="song">
+      <div class="container">
         <button class="song3" type="button" name="button">load</button>
         Closer - Chainsmokers
       </div>
     </div>
     <br>
     <div class="buttons">
-      <button class="play" type="button" name="button">play</button>
-      <button class="pause" type="button" name="button">pause</button>
-      <button class="stop" type="button" name="button">stop</button>
+      <button data-action="play" class="play">play</button>
+      <button data-action="pause" class="pause">pause</button>
+      <button data-action="stop" class="stop">stop</button>
       <!-- <button class="rewind" type="button" name="button">rewind</button>
       <button class="next" type="button" name="button">next</button>
       <button class="prev" type="button" name="button">prev</button> -->
