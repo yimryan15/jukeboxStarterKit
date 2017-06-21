@@ -19,34 +19,50 @@ var source = document.getElementById('source-song')
 
 function Jukebox(name) {
   var audio = document.getElementById('myAudio')
+  var currIndex=0
 
-
-  this.name = name;
+  this.name = name
 
   this.getName = function() {
-    return this.name;
+    return this.name
   }
 
-  this.play = function(id) {
+  this.load = function(id) {
     title.innerText = songs[id].songTitle
     audio.src = songs[id].src
+    currIndex = id
     audio.load()
     audio.play()
   }
+
+  this.play = function() {
+    audio.play()
+  }
+
   this.pause = function() {
     audio.pause()
   }
   this.stop = function() {
-    audio.pause();
-    audio.currentTime = 0;
+    audio.pause()
+    audio.currentTime = 0
   }
 
-  // this.load = function(track) {
-  //   var title = document.querySelector('#title')
-  //   title.innerText = songs[track].songTitle
-  //   source.src = songs[track].src
-  //   audio.load();
-  // }
+  this.next = function() {
+    currIndex++
+    if (currIndex >= songs.length) {
+      currIndex = 0
+    }
+    this.load(currIndex)
+  }
+
+  this.previous = function() {
+    currIndex--
+    if (currIndex <= -1) {
+      currIndex = 2
+    }
+    this.load(currIndex)
+  }
+
 }
 
 var player = new Jukebox("Ryan's Jukebox");
@@ -64,54 +80,24 @@ for(var i = 0; i < len; i++) {
 }
 
 var indexSongs = document.querySelectorAll('.songs')
-
-// for (var i = 0; i < indexSongs.length; i++) {
-//   var elem = indexSongs[i]
-//   elem.addEventListener('click', function() {
-//     var index = elem.getAttribute('data-index')
-//     player.play(index)
-//   })
-// }
-
 var i =0;
+var songIndex = i
 indexSongs.forEach(function(){
   var elem = indexSongs[i]
   elem.addEventListener('click', function() {
     var index = elem.getAttribute('data-index')
-    player.play(index)
+    songIndex = index
+    player.load(index)
   })
   i++;
 })
 
-// function loadSong1() {
-//   title.innerText = "I'm The One - DJ Khalid";
-//   document.getElementById("source-song").src ="./audio_files/imtheone.mp4";
-//   document.getElementById('myAudio').load();
-// }
+var nextButton = document.querySelector('.next')
+nextButton.addEventListener('click', function() {
+  player.next();
+})
 
-// var song1 = document.querySelector('.song1')
-// song1.onclick = function() {
-//   player.load(0);
-// }
-
-// function loadSong2() {
-//   title.innerText = "Despacito - Luis Fonsi & Daddy Yankee ft. Justin Bieber";
-//   document.getElementById("source-song").src ="./audio_files/Despacito.mp4";
-//   document.getElementById('myAudio').load();
-// }
-
-// var song2 = document.querySelector('.song2')
-// song2.onclick = function() {
-//   player.load(1);
-// }
-
-// function loadSong3() {
-//   title.innerText = "Closer - Chainsmokers";
-//   var musicSource = document.getElementById("source-song").src ="./audio_files/closer.mp4";
-//   var audio = document.getElementById('myAudio').load();
-// }
-
-// var song3 = document.querySelector('.song3')
-// song3.onclick = function() {
-//   player.load(2);
-// }
+var previousButton = document.querySelector('.previous')
+previousButton.addEventListener('click', function() {
+  player.previous();
+})
