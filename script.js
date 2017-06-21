@@ -82,6 +82,7 @@ for(var i = 0; i < len; i++) {
 var indexSongs = document.querySelectorAll('.songs')
 var i =0;
 var songIndex = i
+
 indexSongs.forEach(function(){
   var elem = indexSongs[i]
   elem.addEventListener('click', function() {
