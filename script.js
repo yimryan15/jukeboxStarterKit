@@ -58,7 +58,7 @@ function Jukebox(name) {
   this.previous = function() {
     currIndex--
     if (currIndex <= -1) {
-      currIndex = 2
+      currIndex = songs.length - 1
     }
     this.load(currIndex)
   }
